@@ -48,14 +48,14 @@ end
 def send_repair_request
   if @repair.save
   p = current_user.repairs.find params[:id]
-  UserMailer.repair_request(p)
+  UserMailer.repair_request(p).deliver
 end
 end
 
 def send_complete_alert
   if @repair.update
   p = @user.repairs.find params [:id]
-  UserMailer.complete_repair(p)
+  UserMailer.complete_repair(p).deliver
 end
 end
 
