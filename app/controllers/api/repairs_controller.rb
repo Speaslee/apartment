@@ -45,4 +45,18 @@ def show
   @repair = Repair.find params[:id]
 end
 
+def send_repair_request
+  if @repair.save
+  p = current_user.repairs.find params[:id]
+  UserMailer.repair_request(p)
+end
+end
+
+def send_complete_alert
+  if @repair.update
+  p = @user.repairs.find params [:id]
+  UserMailer.complete_repair(p)
+end
+end
+
 end

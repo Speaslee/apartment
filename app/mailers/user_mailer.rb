@@ -4,9 +4,10 @@ class UserMailer <ApplicationMailer
     User.where(admin:true).each do |manager|
 
       mail(to: manager.email, subject: "#{@repair.user.aptnum} repair request: #{@repair.name}" )
+    end
   end
 
-  def complete_alert repair
+  def complete_repair repair
     @repair = repair
     mail(to: @repair.user.email, subject: "Your repair request has been completed")
   end
@@ -15,4 +16,6 @@ class UserMailer <ApplicationMailer
     @users = Users.all
     @users.each do |alert|
       mail(to: alert.email, subject: "Message from manager")
+    end
+  end
   end
