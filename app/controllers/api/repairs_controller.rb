@@ -30,7 +30,7 @@ class Api::RepairsController < Api::BaseController
     elsif current_user.admin == true && params[:completed] == true
       Repair.find(params[:id]).update(
       completed: params[:completed],
-      date_completed: params[:updated_at]
+      date_completed: Time.now
       )
     elsif current_user.admin == true
       Repair.find(params[:id]).update(
