@@ -23,6 +23,6 @@ module Api
         UserMailer.send_alert(p).deliver
       end
     end
-
+  end
   end
 end
