@@ -12,12 +12,16 @@ module Api
         if current_user == nil
           render json: {error: "Please log in"}
         else
-        @user = User.find params[:id]
-      end
+          @user = User.find params[:id]
+        end
     end
 
-    def send_alert
-      #send general alerts to tenants(admin false users)
+    def send_alert_mail
+      #send general alerts to tenant
+      if current_user.admin
+        User.all.each do |p|
+        UserMailer.send_alert(p).deliver
+      end
     end
 
   end

@@ -12,10 +12,8 @@ class UserMailer <ApplicationMailer
     mail(to: @repair.user.email, subject: "Your repair request has been completed")
   end
 
-  def send_alert
-    @users = Users.all
-    @users.each do |alert|
-      mail(to: alert.email, subject: "Message from manager")
+  def send_alert user
+    @user = user
+      mail(to: @user.email, subject: "Message from manager")
     end
-  end
   end
