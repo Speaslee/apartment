@@ -6,4 +6,4 @@ json.aptnum @repair.user.aptnum
 json.description @repair.description
 json.created_at @repair.created_at
 json.completed @repair.completed
-json.completed_at @repair.date_completed
+json.date_completed @repair.date_completed
