@@ -1,4 +1,5 @@
 class Api::RepairsController < Api::BaseController
+  skip_before_action :verify_authenticity_token
   def search
     @repairs = Repair.search params[:q]
   end
