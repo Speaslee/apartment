@@ -2,7 +2,7 @@ class RepairsController < ActionController::Base
   def create
     Repair.create(
     name: params[:name],
-    description: params[:description],
+    repair_description: params[:repair_description],
     user_id: current_user.id,
     )
   end

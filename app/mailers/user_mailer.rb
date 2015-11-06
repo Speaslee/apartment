@@ -3,7 +3,7 @@ class UserMailer <ApplicationMailer
     @repair = repair
     User.where(admin:true).each do |manager|
 
-      mail(to: manager.email, subject: "#{@repair.user.aptnum} repair request: #{@repair.name}" , body: "#{@repair.description}")
+      mail(to: manager.email, subject: "#{@repair.user.aptnum} repair request: #{@repair.name}" , body: "#{@repair.repair_description}")
     end
   end
 

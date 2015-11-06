@@ -17,7 +17,7 @@ class Api::RepairsController < Api::BaseController
   def create
     Repair.create(
     name: params[:name],
-    description: params[:description],
+    repair_description: params[:repair_description],
     user_id: current_user.id
     )
   end
@@ -25,7 +25,7 @@ class Api::RepairsController < Api::BaseController
   def update
     if current_user.id == Repair.find(params[:id]).user_id
       Repair.find(params[:id]).update(
-      description: params[:description]
+      repair_description: params[:repair_description]
       )
     elsif current_user.admin == true && params[:completed] == true
       Repair.find(params[:id]).update(

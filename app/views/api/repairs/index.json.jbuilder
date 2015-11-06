@@ -1,7 +1,7 @@
 json.repairs @repairs do |c|
   json.name c.name
   json.id c.id
-  json.description c.description
+  json.repair_description c.repair_description
   json.created_at c.created_at
   json.completed c.completed
   json.date_completed c.date_completed
