@@ -12,7 +12,6 @@ module Api
   end
 
   def body_params
-  
     json.parse(request.body.read).with_indifferent_access
   end
 
