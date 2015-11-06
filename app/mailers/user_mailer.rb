@@ -14,6 +14,6 @@ class UserMailer <ApplicationMailer
 
   def send_alert user
     @user = user
-      mail(to: @user.email, subject: "Message from manager")
+      mail(to: @user.email, subject: "Message from manager", body: "This is an alert")
     end
   end
