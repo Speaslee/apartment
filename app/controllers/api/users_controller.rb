@@ -20,7 +20,7 @@ module Api
       #send general alerts to tenant
       if current_user.admin
         User.all.each do |p|
-        UserMailer.send_alert(p).deliver
+        UserMailer.send_alert(p).deliver_now
       end
     end
   end
