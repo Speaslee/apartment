@@ -15,23 +15,26 @@ class Api::RepairsController < Api::BaseController
   end
 
   def create
-    Repair.create(
+    r= Repair.create(
     name: params[:name],
     repair_description: params[:repair_description],
     user_id: current_user.id
     )
+    send_repair_request r
   end
 
   def update
     if current_user.id == Repair.find(params[:id]).user_id
-      Repair.find(params[:id]).update(
+       Repair.find(params[:id]).update(
       repair_description: params[:repair_description]
       )
-    elsif current_user.admin == true 
-      Repair.find(params[:id]).update(
+
+    elsif current_user.admin == true
+      r = Repair.find(params[:id]).update(
       completed: params[:completed],
       date_completed: Time.now
       )
+      send_complete_alert r
     else
       render json: {error: "Cannot edit this repair request"}
     end
@@ -41,17 +44,17 @@ class Api::RepairsController < Api::BaseController
     @repair = Repair.find params[:id]
   end
 
-  def send_repair_request
+  def send_repair_request repair
+    @repair = repair
       if @repair.save
-      p = current_user.repairs.find params[:id]
-      UserMailer.repair_request(p).deliver
+      UserMailer.repair_request(@repair).deliver
     end
   end
 
-  def send_complete_alert
+  def send_complete_alert r
+    @repair = r
       if @repair.update
-      p = @user.repairs.find params [:id]
-      UserMailer.complete_repair(p).deliver
+      UserMailer.complete_repair(@repair).deliver
     end
   end
 
