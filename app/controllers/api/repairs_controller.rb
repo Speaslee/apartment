@@ -16,8 +16,8 @@ class Api::RepairsController < Api::BaseController
 
   def create
     Repair.create(
-    name: body_params[:name],
-    description: body_params[:description],
+    name: params[:name],
+    description: params[:description],
     user_id: current_user.id
     )
   end
@@ -25,16 +25,16 @@ class Api::RepairsController < Api::BaseController
   def update
     if current_user.id == Repair.find(params[:id]).user_id
       Repair.find(params[:id]).update(
-      description: body_params[:description]
+      description: params[:description]
       )
-    elsif current_user.admin == true && body_params[:completed] == true
+    elsif current_user.admin == true && params[:completed] == true
       Repair.find(params[:id]).update(
-      completed: body_params[:completed],
-      date_completed: body_params[:updated_at]
+      completed: params[:completed],
+      date_completed: params[:updated_at]
       )
     elsif current_user.admin == true
       Repair.find(params[:id]).update(
-      completed: body_params[:completed],
+      completed: params[:completed],
       date_completed: nil
       )
     else

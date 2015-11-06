@@ -11,10 +11,6 @@ module Api
     render json: { error: e.message, trace: e.backtrace.first}, status: 500
   end
 
-  def body_params
-    request.body.rewind
-    json.parse(request.body.read).with_indifferent_access
-  end
 
   end
 end
