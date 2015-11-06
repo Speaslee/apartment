@@ -5,4 +5,5 @@ json.users @users do |c|
   json.email c.email
   json.phone c.phone
   json.aptnum c.aptnum
+  json.outstanding_repairs c.repairs.count
 end

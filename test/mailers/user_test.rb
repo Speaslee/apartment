@@ -3,7 +3,7 @@ class UserMailerTest < ActionMailer::TestCase
 
   def test_send_alert
   User.all.each do |c|
-    email = UserMailer.send_alert(c).deliver_new
+    email = UserMailer.send_alert(c).deliver_now
     assert !ActionMailer::Base.deliveries.empty?
 
     assert_equal [c.email], email.to

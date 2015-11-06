@@ -4,7 +4,6 @@ resources :repairs
 namespace :api do
     resources :users
     resources :repairs
-
     get :search, controller: "repairs", action: "search"
   end
 
