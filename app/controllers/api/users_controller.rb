@@ -1,5 +1,6 @@
 module Api
   class UsersController < BaseController
+    skip_before_action :verify_authenticity_token
     def index
         if current_user == nil
           render json: {error: "Please log in"}
