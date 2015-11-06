@@ -29,12 +29,12 @@ class Api::RepairsController < Api::BaseController
     elsif current_user.admin == true && params[:completed] == true
       Repair.find(params[:id]).update(
       completed: params[:completed],
-      completed_at: params[:updated_at]
+      date_completed: params[:updated_at]
       )
     elsif current_user.admin == true && params[:completed] == false
       Repair.find(params[:id]).update(
       completed: params[:completed],
-      completed_at: nil
+      date_completed: nil
       )
     else
       render json: {error: "Cannot edit this repair request"}
