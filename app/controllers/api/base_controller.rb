@@ -12,7 +12,7 @@ module Api
   end
 
   def body_params
-    request.body.rewind
+  
     json.parse(request.body.read).with_indifferent_access
   end
 
