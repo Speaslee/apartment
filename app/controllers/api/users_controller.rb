@@ -17,10 +17,6 @@ module Api
         end
     end
 
-    def delete
-      r= user.find(params:id)
-      r.destroy
-    end
 
     def send_alert_mail
       #send general alerts to tenant

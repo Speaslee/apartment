@@ -58,7 +58,7 @@ class Api::RepairsController < Api::BaseController
     end
   end
 
-def delete
+def destroy
   r= Repair.find(params:id)
   r.destroy
 end
